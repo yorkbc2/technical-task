@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Оставить Отзыв.</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.11.8/semantic.min.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.11.8/semantic.min.js"></script>
+</head>
+<body>
+
+<div class='ui aligned center grid' style="text-align: center;">
+<div class='eight wide column'>
+	<h1>
+		Написать отзыв о Нас!
+	</h1>
+	<p>
+		Пожалуйста, заполните форму и напишите все, что Вы думаете о нас. Оцените нашу работу, а также, выберите место, где Вы получили положительные или отрицательные емоции.
+	</p>
+
+	<div class="ui very padded segment">
+		<form id="testimonial-form" class="ui form" style="text-align: left;">
+
+			<!-- Office section -->
+			<div class="field">
+				<label>Укажите офис, в который вы обращались:</label>
+
+				<?php foreach(Config::getOffices() as $key=>$office) { ?>
+				
+				<?php 
+					$checked = false;
+					if($office["id"] == $officeProp) {
+					$checked = true;
+					}
+				?>
+
+				<div class="field" id="office-input">
+					<div class="ui radio checkbox">
+						<input type="radio" name='office' value="<?php echo $office['value'] ?>"
+						id='office-<?php echo $office["id"] ?>' 
+						<?php if($checked == true) echo "checked"; ?>
+						 >
+						<label for="office-<?php echo $office['id'] ?>"><?php echo $office['value']; ?></label>
+					</div>
+				</div>
+
+				<?php } ?>
+			</div>
+			<!-- End of Office Section -->
+			<!-- Start of Rating section -->
+			<div class="field" id="rating-input">
+				<label>Оцените нас по пятибальной системе!</label>
+				<?php for($i = 1 ; $i <= 5; $i++) { 
+				$checked = false;
+				if($i == $ratingProp) {
+				$checked = true;
+				}
+				?>
+
+				<div class="field">
+					<div class="ui radio checkbox">
+						<input type="radio" name='rating' value="<?php echo $i ?>" id='rating-<?php echo $i ?>' <?php if($checked == true) echo "checked" ?> >
+						<label for="rating-<?php echo $i ?>">
+							<?php echo $i ?>
+						</label>
+					</div>
+				</div>
+
+				<?php } ?>
+			</div>
+			<!-- End of Rating Section -->
+			<!-- Start of Comment section -->
+			<!-- Positive -->
+			<div class="field" id="positive-input">
+				<label for="comment-positive">
+					Что Вам понравилось ?
+				</label>
+				<textarea name="comment_positive" id="comment-positive"></textarea>
+			</div>
+			<!-- Negative -->
+			<div class="field" id="negative-input">
+				<label for="comment-negative">
+					Что Вам НЕ понравилось ?
+				</label>
+				<textarea name="comment_negative" id="comment-negative"></textarea>
+			</div>
+			<!-- End of Comment Section -->
+			<!-- <div class="field">
+				<div class="g-recaptcha" data-sitekey="your_site_key"></div>
+			</div> -->
+
+			<div class='field'>
+				<button type='submit' class="ui blue basic button">
+					Отправить 
+				</button>
+			</div>
+		</form>
+		<div id="testimonial-response">
+			
+		</div>
+	</div>
+</div>
+</div>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<script src="<?php echo Config::getScript('app.js') ?>"></script>
+</body>
+</html>
