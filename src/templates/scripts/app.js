@@ -61,8 +61,8 @@ $(document).ready(function (globalEvent) {
 			</div>`)
 		}
 
-		function errorAlert() {
-			$("#testimonial-response").html(`<div class="ui negative message">
+		function errorAlert(id) {
+			$(id).html(`<div class="ui negative message">
 			
 			  <div class="header">
 			    Ошибка в отправки данных!
@@ -71,25 +71,32 @@ $(document).ready(function (globalEvent) {
 			</p></div>`)
 		}
 
-		$.ajax({
-			url: "server.php",
-			data: data,
-			cache: false,
-			method: "POST",
-			success(response) {
-				hideForm()
-				if(parseInt(response) == 1) {
-					successAlert()
-				}
-				else {
-					errorAlert()
-				}
-			},
-			error(err) {
-				hideForm()
-				errorAlert()
-			}
-		})
+		if(grecaptcha.getResponse()) {
+
+		}
+		else {
+			errorAlert('#testimonial-error--form')
+		}
+
+		// $.ajax({
+		// 	url: "server.php",
+		// 	data: data,
+		// 	cache: false,
+		// 	method: "POST",
+		// 	success(response) {
+		// 		hideForm()
+		// 		if(parseInt(response) == 1) {
+		// 			successAlert()
+		// 		}
+		// 		else {
+		// 			errorAlert()
+		// 		}
+		// 	},
+		// 	error(err) {
+		// 		hideForm()
+		// 		errorAlert()
+		// 	}
+		// })
 
 	});
 

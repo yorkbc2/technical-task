@@ -21,6 +21,8 @@
 	<div class="ui very padded segment">
 		<form id="testimonial-form" class="ui form" style="text-align: left;">
 
+			<div id="testimonial-error-form"
+
 			<!-- Office section -->
 			<div class="field">
 				<label>Укажите офис, в который вы обращались:</label>
@@ -75,19 +77,19 @@
 				<label for="comment-positive">
 					Что Вам понравилось ?
 				</label>
-				<textarea name="comment_positive" id="comment-positive"></textarea>
+				<textarea required name="comment_positive" id="comment-positive"></textarea>
 			</div>
 			<!-- Negative -->
 			<div class="field" id="negative-input">
 				<label for="comment-negative">
 					Что Вам НЕ понравилось ?
 				</label>
-				<textarea name="comment_negative" id="comment-negative"></textarea>
+				<textarea required name="comment_negative" id="comment-negative"></textarea>
 			</div>
 			<!-- End of Comment Section -->
-			<!-- <div class="field">
-				<div class="g-recaptcha" data-sitekey="your_site_key"></div>
-			</div> -->
+			<div class="field">
+				<div class="g-recaptcha" data-sitekey="6LcnsDYUAAAAAKE_4W8cwXS1-IrSxMA6Z1zZ3wV_"></div>
+			</div>
 
 			<div class='field'>
 				<button type='submit' class="ui blue basic button">
@@ -101,7 +103,7 @@
 	</div>
 </div>
 </div>
-<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 <script src="<?php echo Config::getScript('app.js') ?>"></script>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </body>
 </html>
